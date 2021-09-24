@@ -33,7 +33,7 @@ public class PatientController {
 	public PatientDto getPatient(@PathParam(value = "id") Long id) {
 		return convertToDto(this.service.getPatient(id));
 	}
-	
+		
 	private PatientDto convertToDto(Patient post) {
 	    PatientDto patientDto = modelMapper.map(post, PatientDto.class);
 	    return patientDto;
