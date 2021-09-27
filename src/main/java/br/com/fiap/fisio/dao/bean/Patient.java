@@ -9,7 +9,7 @@ import javax.persistence.OneToMany;
 @Entity
 public class Patient extends Person {
 
-	@OneToMany(cascade = CascadeType.PERSIST)
+	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "patient")
 	private List<Treatment> treatments;
 
 	public List<Treatment> getTreatments() {

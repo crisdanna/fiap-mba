@@ -10,7 +10,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-
 @Entity
 public class Person {
 
@@ -20,6 +19,7 @@ public class Person {
 	
 	private String name;
 	private String lastname;
+	private String email;
 	
 	@OneToMany(cascade = CascadeType.PERSIST)
     private List<Address> addresses = new ArrayList<>();
@@ -38,6 +38,13 @@ public class Person {
 	}
 	public void setLastname(String lastname) {
 		this.lastname = lastname;
+	}
+	
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	public List<Address> getAddress() {
 		return addresses;

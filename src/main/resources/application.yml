@@ -1,3 +1,7 @@
+server:
+    servlet:
+        context-path: /clintech
+
 ## default connection pool
 spring:
     datasource:

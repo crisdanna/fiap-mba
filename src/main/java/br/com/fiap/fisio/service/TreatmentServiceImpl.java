@@ -3,10 +3,12 @@ package br.com.fiap.fisio.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import br.com.fiap.fisio.dao.bean.Treatment;
 import br.com.fiap.fisio.dao.repository.TreatmentRepository;
 
+@Service
 public class TreatmentServiceImpl implements TreatmentService {
 	@Autowired
 	private TreatmentRepository repository;

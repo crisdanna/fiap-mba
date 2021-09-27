@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -24,6 +25,9 @@ public class Treatment {
 	@OneToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "procedureId")
 	private Procedure procedure;
+	
+	@ManyToOne
+	private Patient patient;
 	
 	@OneToMany(cascade = CascadeType.PERSIST)
 	private List<Appointment> appointments;
