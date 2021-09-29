@@ -3,10 +3,12 @@ package br.com.fiap.fisio.dao.bean;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
 @Entity
+@DiscriminatorValue("1")
 public class Patient extends Person {
 
 	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "patient")
