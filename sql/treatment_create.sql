@@ -2,9 +2,11 @@
 
 -- DROP TABLE public.treatment;
 
+CREATE SEQUENCE public.treatment_id_seq;
+
 CREATE TABLE public.treatment
 (
-    id bigint NOT NULL,
+    id bigint NOT NULL DEFAULT nextval('treatment_id_seq'),
     authorization_number integer NOT NULL,
     patient_id bigint,
     procedure_id bigint,
@@ -23,3 +25,5 @@ TABLESPACE pg_default;
 
 ALTER TABLE public.treatment
     OWNER to postgres;
+    
+ALTER SEQUENCE treatment_id_seq OWNED BY treatment.id;
