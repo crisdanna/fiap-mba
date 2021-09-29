@@ -9,6 +9,7 @@ CREATE TABLE public.person
     email character varying(255) COLLATE pg_catalog."default",
     lastname character varying(255) COLLATE pg_catalog."default",
     name character varying(255) COLLATE pg_catalog."default",
+    phone character varying(255) COLLATE pg_catalog."default",
     CONSTRAINT person_pkey PRIMARY KEY (id)
 )
 

@@ -26,6 +26,7 @@ public class Person {
 	private String name;
 	private String lastname;
 	private String email;
+	private String phone;
 	
 	@OneToMany(cascade = CascadeType.PERSIST)
     private List<Address> addresses = new ArrayList<>();
@@ -51,6 +52,13 @@ public class Person {
 	}
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 	public List<Address> getAddress() {
 		return addresses;
