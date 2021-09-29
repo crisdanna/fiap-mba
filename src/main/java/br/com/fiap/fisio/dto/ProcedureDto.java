@@ -7,6 +7,10 @@ public class ProcedureDto {
 	private String decription;
 	private boolean isAuthorizationM;
 	
+	
+	public void setId(Long id) {
+		this.id = id;
+	}
 	public Long getId() {
 		return id;
 	}

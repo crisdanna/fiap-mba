@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 
@@ -11,7 +12,8 @@ import javax.persistence.Table;
 @Table(name = "procedure")
 public class Procedure {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.AUTO, generator = "procedure_id_seq")
+	@SequenceGenerator(name = "procedure_id_seq", allocationSize = 1)
 	private Long id;
 	private String name;
 	private String decription;

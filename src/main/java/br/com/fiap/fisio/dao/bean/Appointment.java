@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 
@@ -18,7 +19,8 @@ import javax.persistence.Table;
 public class Appointment {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.AUTO, generator = "appointment_id_seq")
+	@SequenceGenerator(name = "appointment_id_seq", allocationSize = 1)
 	private Long id;
 	
 	private LocalDate date;

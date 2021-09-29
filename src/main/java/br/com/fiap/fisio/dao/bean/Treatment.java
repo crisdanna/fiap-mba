@@ -11,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 
@@ -19,7 +20,8 @@ import javax.persistence.Table;
 public class Treatment {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.AUTO, generator = "treatment_id_seq")
+	@SequenceGenerator(name = "treatment_id_seq", allocationSize = 1)
 	private Long id;
 	
 	private int authorizationNumber;

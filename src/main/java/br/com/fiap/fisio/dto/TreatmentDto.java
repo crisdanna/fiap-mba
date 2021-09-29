@@ -4,7 +4,7 @@ import java.util.List;
 
 public class TreatmentDto {
 
-private Long id;
+	private Long id;
 	
 	private int authorizationNumber;
 	
@@ -32,4 +32,8 @@ private Long id;
 	public Long getId() {
 		return id;
 	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
 }

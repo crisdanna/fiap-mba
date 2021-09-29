@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 
 @Entity(name="person")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -20,7 +21,8 @@ import javax.persistence.OneToMany;
 public class Person {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.AUTO, generator = "person_id_seq")
+	@SequenceGenerator(name = "person_id_seq", allocationSize = 1)
 	private Long id;
 	
 	private String name;
@@ -28,7 +30,7 @@ public class Person {
 	private String email;
 	private String phone;
 	
-	@OneToMany(cascade = CascadeType.PERSIST)
+	@OneToMany(cascade = CascadeType.ALL)
     private List<Address> addresses = new ArrayList<>();
 	
 	public Long getId() {
@@ -60,10 +62,10 @@ public class Person {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-	public List<Address> getAddress() {
+	public List<Address> getAddresses() {
 		return addresses;
 	}
-	public void setAddresss(List<Address> addresses) {
+	public void setAddresses(List<Address> addresses) {
 		this.addresses = addresses;
 	}
 }
