@@ -5,10 +5,12 @@ import java.time.LocalTime;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -29,6 +31,9 @@ public class Appointment {
 	@OneToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "professionalId")
 	private Professional professional;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	private Treatment treatment;
 	
 	public Long getId() {
 		return id;
@@ -51,4 +56,11 @@ public class Appointment {
 	public void setProfessional(Professional professional) {
 		this.professional = professional;
 	}
+	public Treatment getTreatment() {
+		return treatment;
+	}
+	public void setTreatment(Treatment treatment) {
+		this.treatment = treatment;
+	}
+	
 }

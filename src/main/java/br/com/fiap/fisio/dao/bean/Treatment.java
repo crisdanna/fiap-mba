@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -30,10 +31,10 @@ public class Treatment {
 	@JoinColumn(name = "procedureId")
 	private Procedure procedure;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Patient patient;
 	
-	@OneToMany(cascade = CascadeType.PERSIST)
+	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "treatment")
 	private List<Appointment> appointments;
 	
 	public int getAuthorizationNumber() {
@@ -57,4 +58,11 @@ public class Treatment {
 	public Long getId() {
 		return id;
 	}
+	public Patient getPatient() {
+		return patient;
+	}
+	public void setPatient(Patient patient) {
+		this.patient = patient;
+	}
+	
 }

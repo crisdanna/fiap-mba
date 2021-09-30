@@ -10,6 +10,7 @@ public class TreatmentDto {
 	
 	private ProcedureDto procedure;
 	private List<AppointmentDto> appointments;
+	private PatientDto patient;
 	
 	public int getAuthorizationNumber() {
 		return authorizationNumber;
@@ -34,6 +35,12 @@ public class TreatmentDto {
 	}
 	public void setId(Long id) {
 		this.id = id;
+	}
+	public PatientDto getPatient() {
+		return patient;
+	}
+	public void setPatient(PatientDto patient) {
+		this.patient = patient;
 	}
 	
 }

@@ -1,16 +1,13 @@
 package br.com.fiap.fisio.dto;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
-
 public class AppointmentDto {
 
 	private Long id;
 	
-	private LocalDate date;
-	private LocalTime time;
+	private String date;
+	private String time;
 	private ProfessionalDto professional;
-	
+	private TreatmentDto treatment;
 	
 	public void setId(Long id) {
 		this.id = id;
@@ -18,16 +15,16 @@ public class AppointmentDto {
 	public Long getId() {
 		return id;
 	}
-	public LocalDate getDate() {
+	public String getDate() {
 		return date;
 	}
-	public void setDate(LocalDate date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
-	public LocalTime getTime() {
+	public String getTime() {
 		return time;
 	}
-	public void setTime(LocalTime time) {
+	public void setTime(String time) {
 		this.time = time;
 	}
 	public ProfessionalDto getProfessional() {
@@ -36,4 +33,11 @@ public class AppointmentDto {
 	public void setProfessional(ProfessionalDto professional) {
 		this.professional = professional;
 	}
+	public TreatmentDto getTreatment() {
+		return treatment;
+	}
+	public void setTreatment(TreatmentDto treatment) {
+		this.treatment = treatment;
+	}
+	
 }

@@ -1,11 +1,14 @@
 package br.com.fiap.fisio.controller;
 
-import javax.websocket.server.PathParam;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,12 +33,12 @@ public class AppointmentController {
 	}
 	
 	@GetMapping("/{id}")
-	public AppointmentDto getAppointment(@PathParam(value = "id") Long id) {
+	public AppointmentDto getAppointment(@PathVariable("id") Long id) {
 		return convertToDto(this.service.getAppointment(id));
 	}
 	
 	@DeleteMapping("/{id}")
-	public void deleteAppointment(@PathParam(value = "id") Long id) {
+	public void deleteAppointment(@PathVariable("id") Long id) {
 		this.service.deleteAppointment(this.service.getAppointment(id));
 	}
 	
@@ -46,6 +49,8 @@ public class AppointmentController {
 	
 	private Appointment convertToEntity(AppointmentDto appointmentDto){
 		Appointment appointment = modelMapper.map(appointmentDto, Appointment.class);
+		appointment.setDate(LocalDate.parse(appointmentDto.getDate(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+		appointment.setTime(LocalTime.parse(appointmentDto.getTime(), DateTimeFormatter.ofPattern("HH:mm")));
 	    return appointment;
 	}
 }
