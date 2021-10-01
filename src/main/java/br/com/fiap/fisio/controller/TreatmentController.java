@@ -30,13 +30,11 @@ public class TreatmentController {
 	}
 	
 	private List<TreatmentDto> convertToDtoList(List<Treatment> treatments) {
-		List<TreatmentDto> treatmentDtoList = modelMapper.map(treatments, List.class);
-	    return treatmentDtoList;
+		return modelMapper.map(treatments, List.class);
 	}
 	
-	private TreatmentDto convertToDto(Treatment treatment) {
-		TreatmentDto treatmentDto = modelMapper.map(treatment, TreatmentDto.class);
-	    return treatmentDto;
+	public TreatmentDto convertToDto(Treatment treatment) {
+		return modelMapper.map(treatment, TreatmentDto.class);
 	}
 	
 	public Treatment convertToEntity(TreatmentDto treatmentDto){

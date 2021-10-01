@@ -79,12 +79,7 @@ public class AppointmentServiceImpl implements AppointmentService {
 
 	@Override
 	public List<Appointment> getAppointmentsByPatient(Long id) {
-		Patient patient = this.patientService.getPatient(id);
-		List<Treatment> treatments = patient.getTreatments();
-		List<Appointment> appointments = new ArrayList<>();
-		treatments.forEach(treatment -> appointments.addAll(treatment.getAppointments()));
-		
-		return appointments;
+		return this.repository.findByPatientId(id);
 	}
 
 	@Override

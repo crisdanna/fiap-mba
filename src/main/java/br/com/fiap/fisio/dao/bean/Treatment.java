@@ -1,7 +1,5 @@
 package br.com.fiap.fisio.dao.bean;
 
-import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,7 +8,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -34,9 +31,6 @@ public class Treatment {
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Patient patient;
 	
-	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "treatment")
-	private List<Appointment> appointments;
-	
 	public int getAuthorizationNumber() {
 		return authorizationNumber;
 	}
@@ -48,12 +42,6 @@ public class Treatment {
 	}
 	public void setProcedure(Procedure procedure) {
 		this.procedure = procedure;
-	}
-	public List<Appointment> getAppointments() {
-		return appointments;
-	}
-	public void setAppointments(List<Appointment> appointments) {
-		this.appointments = appointments;
 	}
 	public void setId(Long id) {
 		this.id = id;

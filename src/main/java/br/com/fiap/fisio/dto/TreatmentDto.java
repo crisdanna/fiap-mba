@@ -9,7 +9,6 @@ public class TreatmentDto {
 	private int authorizationNumber;
 	
 	private ProcedureDto procedure;
-	private List<AppointmentDto> appointments;
 	private PatientDto patient;
 	
 	public int getAuthorizationNumber() {
@@ -23,12 +22,6 @@ public class TreatmentDto {
 	}
 	public void setProcedure(ProcedureDto procedure) {
 		this.procedure = procedure;
-	}
-	public List<AppointmentDto> getAppointments() {
-		return appointments;
-	}
-	public void setAppointments(List<AppointmentDto> appointments) {
-		this.appointments = appointments;
 	}
 	public Long getId() {
 		return id;

@@ -30,4 +30,8 @@ public class ProfessionalController {
 		List<ProfessionalDto> professionalDtoList = modelMapper.map(professionals, List.class);
 	    return professionalDtoList;
 	}
+	
+	public ProfessionalDto convertToDto(Professional professional) {
+		return modelMapper.map(professional, ProfessionalDto.class);
+	}
 }

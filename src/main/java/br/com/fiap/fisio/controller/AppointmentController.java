@@ -3,6 +3,8 @@ package br.com.fiap.fisio.controller;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
@@ -35,15 +37,22 @@ public class AppointmentController {
 	@Autowired
 	private TreatmentController treatmentController;
 	
+	@Autowired
+	private ProfessionalController professionalController;
+	
 	@PostMapping
 	public void saveAppointment(@RequestBody AppointmentDto appointment) {
-		logger.info(appointment.toString());
 		this.service.saveAppointment(convertToEntity(appointment));
 	}
 	
 	@GetMapping("/{id}")
 	public AppointmentDto getAppointment(@PathVariable("id") Long id) {
 		return convertToDto(this.service.getAppointment(id));
+	}
+	
+	@GetMapping("/list/{id}")
+	public List<AppointmentDto> getAppointmentsByPatient(@PathVariable("id") Long id) {
+		return convertToDtoList(this.service.getAppointmentsByPatient(id));
 	}
 	
 	@DeleteMapping("/{id}")
@@ -53,7 +62,20 @@ public class AppointmentController {
 	
 	private AppointmentDto convertToDto(Appointment appointment) {
 		AppointmentDto appointmentDto = modelMapper.map(appointment, AppointmentDto.class);
+		appointmentDto.setProfessional(this.professionalController.convertToDto(appointment.getProfessional()));
+		appointmentDto.setTreatment(this.treatmentController.convertToDto(appointment.getTreatment()));
+		
 	    return appointmentDto;
+	}
+	
+	private List<AppointmentDto> convertToDtoList(List<Appointment> appointments) {
+		logger.info("Appointments to convert: {}", appointments.size());
+		List<AppointmentDto> appointmentsList = new ArrayList<AppointmentDto>();
+		appointments.forEach(appointment -> {
+			appointmentsList.add(convertToDto(appointment));
+		});
+		
+		return appointmentsList;
 	}
 	
 	private Appointment convertToEntity(AppointmentDto appointmentDto){
@@ -64,7 +86,6 @@ public class AppointmentController {
 		appointment.setProfessional(modelMapper.map(appointmentDto.getProfessional(), Professional.class));
 		appointment.setTreatment(this.treatmentController.convertToEntity(appointmentDto.getTreatment()));
 		
-		logger.info(appointment.toString());
-	    return appointment;
+		return appointment;
 	}
 }
