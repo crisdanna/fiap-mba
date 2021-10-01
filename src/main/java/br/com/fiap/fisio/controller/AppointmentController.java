@@ -41,8 +41,8 @@ public class AppointmentController {
 	private ProfessionalController professionalController;
 	
 	@PostMapping
-	public void saveAppointment(@RequestBody AppointmentDto appointment) {
-		this.service.saveAppointment(convertToEntity(appointment));
+	public Appointment saveAppointment(@RequestBody AppointmentDto appointment) {
+		return this.service.saveAppointment(convertToEntity(appointment));
 	}
 	
 	@GetMapping("/{id}")
@@ -56,8 +56,13 @@ public class AppointmentController {
 	}
 	
 	@DeleteMapping("/{id}")
-	public void deleteAppointment(@PathVariable("id") Long id) {
-		this.service.deleteAppointment(this.service.getAppointment(id));
+	public String deleteAppointment(@PathVariable("id") Long id) {
+		try {
+			this.service.deleteAppointment(this.service.getAppointment(id));
+		}catch(Exception e) {
+			logger.error("Unable to delete appointment.", e);
+		}
+		return "Appointment deleted.";
 	}
 	
 	private AppointmentDto convertToDto(Appointment appointment) {

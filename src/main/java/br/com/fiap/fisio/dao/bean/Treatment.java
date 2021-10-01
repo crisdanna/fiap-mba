@@ -28,7 +28,7 @@ public class Treatment {
 	@JoinColumn(name = "procedureId")
 	private Procedure procedure;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	private Patient patient;
 	
 	public int getAuthorizationNumber() {

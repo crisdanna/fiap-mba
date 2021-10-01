@@ -1,6 +1,5 @@
 package br.com.fiap.fisio.service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -37,7 +36,7 @@ public class AppointmentServiceImpl implements AppointmentService {
 	
 	@Override
 	@Transactional
-	public void saveAppointment(Appointment appointment) {
+	public Appointment saveAppointment(Appointment appointment) {
 		
 		Treatment treatment = null;
 		try{
@@ -64,7 +63,7 @@ public class AppointmentServiceImpl implements AppointmentService {
 		appointment.setTreatment(treatment);
 		appointment.setProfessional(this.professionalService.getProfessional(appointment.getProfessional().getId()));
 				
-		this.repository.save(appointment);
+		return this.repository.save(appointment);
 	}
 
 	@Override
