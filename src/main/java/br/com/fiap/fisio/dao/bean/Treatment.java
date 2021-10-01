@@ -55,6 +55,9 @@ public class Treatment {
 	public void setAppointments(List<Appointment> appointments) {
 		this.appointments = appointments;
 	}
+	public void setId(Long id) {
+		this.id = id;
+	}
 	public Long getId() {
 		return id;
 	}
@@ -65,4 +68,15 @@ public class Treatment {
 		this.patient = patient;
 	}
 	
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("**** TREATMENT **** \n");
+		sb.append("ID: ").append(this.getId()).append("\n");
+		sb.append("Authorization Number: ").append(this.getAuthorizationNumber()).append("\n");
+		sb.append(this.getPatient().toString()).append("\n");
+		sb.append(this.getProcedure().toString()).append("\n");
+				
+		return sb.toString();
+	}
 }

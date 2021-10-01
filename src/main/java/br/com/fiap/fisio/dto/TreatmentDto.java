@@ -43,4 +43,15 @@ public class TreatmentDto {
 		this.patient = patient;
 	}
 	
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("**** TREATMENT DTO **** \n");
+		sb.append("ID: ").append(this.getId()).append("\n");
+		sb.append("Authorization Number: ").append(this.getAuthorizationNumber()).append("\n");
+		sb.append(this.getPatient().toString()).append("\n");
+		sb.append(this.getProcedure().toString()).append("\n");
+				
+		return sb.toString();
+	}
 }

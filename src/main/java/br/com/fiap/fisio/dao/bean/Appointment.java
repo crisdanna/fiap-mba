@@ -33,8 +33,12 @@ public class Appointment {
 	private Professional professional;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "treatmentId")
 	private Treatment treatment;
 	
+	public void setId(Long id) {
+		this.id = id;
+	}
 	public Long getId() {
 		return id;
 	}
@@ -63,4 +67,16 @@ public class Appointment {
 		this.treatment = treatment;
 	}
 	
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("**** APPOINTMENT **** \n");
+		sb.append("ID: ").append(this.getId()).append("\n");
+		sb.append("Date: ").append(this.getDate()).append("\n");
+		sb.append("Time: ").append(this.getTime()).append("\n");
+		sb.append(this.getProfessional().toString()).append("\n");
+		sb.append(this.getTreatment().toString()).append("\n");
+				
+		return sb.toString();
+	}
 }

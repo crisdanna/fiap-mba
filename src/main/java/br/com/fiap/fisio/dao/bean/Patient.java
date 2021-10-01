@@ -11,7 +11,7 @@ import javax.persistence.OneToMany;
 @DiscriminatorValue("1")
 public class Patient extends Person {
 
-	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "patient")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "patient", orphanRemoval = true)
 	private List<Treatment> treatments;
 
 	public List<Treatment> getTreatments() {

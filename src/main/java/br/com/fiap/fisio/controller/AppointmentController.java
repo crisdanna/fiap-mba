@@ -5,6 +5,8 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 import org.modelmapper.ModelMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,20 +17,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.fiap.fisio.dao.bean.Appointment;
+import br.com.fiap.fisio.dao.bean.Professional;
 import br.com.fiap.fisio.dto.AppointmentDto;
 import br.com.fiap.fisio.service.AppointmentService;
 
 @RestController
 @RequestMapping("appointment")
 public class AppointmentController {
+	private static transient Logger logger = LoggerFactory.getLogger(AppointmentController.class);
+	
 	@Autowired
 	private AppointmentService service;
 	
 	@Autowired
 	private ModelMapper modelMapper;
 	
+	@Autowired
+	private TreatmentController treatmentController;
+	
 	@PostMapping
 	public void saveAppointment(@RequestBody AppointmentDto appointment) {
+		logger.info(appointment.toString());
 		this.service.saveAppointment(convertToEntity(appointment));
 	}
 	
@@ -51,6 +60,11 @@ public class AppointmentController {
 		Appointment appointment = modelMapper.map(appointmentDto, Appointment.class);
 		appointment.setDate(LocalDate.parse(appointmentDto.getDate(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
 		appointment.setTime(LocalTime.parse(appointmentDto.getTime(), DateTimeFormatter.ofPattern("HH:mm")));
+		
+		appointment.setProfessional(modelMapper.map(appointmentDto.getProfessional(), Professional.class));
+		appointment.setTreatment(this.treatmentController.convertToEntity(appointmentDto.getTreatment()));
+		
+		logger.info(appointment.toString());
 	    return appointment;
 	}
 }

@@ -32,4 +32,16 @@ public class ProcedureDto {
 	public void setAuthorizationM(boolean isAuthorizationM) {
 		this.isAuthorizationM = isAuthorizationM;
 	}
+	
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("**** PROCEDURE DTO **** \n");
+		sb.append("ID: ").append(this.getId()).append("\n");
+		sb.append("Name: ").append(this.getName()).append("\n");
+		sb.append("Description: ").append(this.getDecription()).append("\n");
+		sb.append("Is authorization Mandatory: ").append(this.isAuthorizationM()).append("\n");
+				
+		return sb.toString();
+	}
 }

@@ -32,7 +32,10 @@ public class Person {
 	
 	@OneToMany(cascade = CascadeType.ALL)
     private List<Address> addresses = new ArrayList<>();
-	
+		
+	public void setId(Long id) {
+		this.id = id;
+	}
 	public Long getId() {
 		return id;
 	}

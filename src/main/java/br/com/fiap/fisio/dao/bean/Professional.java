@@ -21,4 +21,16 @@ public class Professional extends Person {
 	public void setSpecialties(List<Procedure> specialties) {
 		this.specialties = specialties;
 	}
+	
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("**** PROFESSIONAL **** \n");
+		sb.append("ID: ").append(this.getId()).append("\n");
+		sb.append("Name: ").append(this.getName()).append("\n");
+		sb.append("Last Name: ").append(this.getLastname()).append("\n");
+		sb.append("Phone: ").append(this.getPhone()).append("\n");
+				
+		return sb.toString();
+	}
 }

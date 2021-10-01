@@ -40,4 +40,16 @@ public class AppointmentDto {
 		this.treatment = treatment;
 	}
 	
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("**** APPOINTMENT DTO **** \n");
+		sb.append("ID: ").append(this.getId()).append("\n");
+		sb.append("Date: ").append(this.getDate()).append("\n");
+		sb.append("Time: ").append(this.getTime()).append("\n");
+		sb.append(this.getProfessional().toString()).append("\n");
+		sb.append(this.getTreatment().toString()).append("\n");
+				
+		return sb.toString();
+	}
 }
