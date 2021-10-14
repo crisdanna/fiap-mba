@@ -27,7 +27,6 @@ public class PatientController {
 	
 	@PostMapping
 	public void savePatient(@RequestBody PatientDto patient) {
-		// TODO - Check encoding (special chars not allowed right now
 		this.service.savePatient(convertToEntity(patient));
 	}
 	
