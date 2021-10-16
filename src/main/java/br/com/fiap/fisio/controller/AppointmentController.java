@@ -69,6 +69,7 @@ public class AppointmentController {
 		AppointmentDto appointmentDto = modelMapper.map(appointment, AppointmentDto.class);
 		appointmentDto.setProfessional(this.professionalController.convertToDto(appointment.getProfessional()));
 		appointmentDto.setTreatment(this.treatmentController.convertToDto(appointment.getTreatment()));
+		appointmentDto.setDate(appointment.getDate().format(DateTimeFormatter.ofPattern("MM/dd/yyyy")));
 		
 	    return appointmentDto;
 	}
@@ -85,7 +86,7 @@ public class AppointmentController {
 	
 	private Appointment convertToEntity(AppointmentDto appointmentDto){
 		Appointment appointment = modelMapper.map(appointmentDto, Appointment.class);
-		appointment.setDate(LocalDate.parse(appointmentDto.getDate(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+		appointment.setDate(LocalDate.parse(appointmentDto.getDate(), DateTimeFormatter.ofPattern("MM/dd/yyyy")));
 		appointment.setTime(LocalTime.parse(appointmentDto.getTime(), DateTimeFormatter.ofPattern("HH:mm")));
 		
 		appointment.setProfessional(modelMapper.map(appointmentDto.getProfessional(), Professional.class));
