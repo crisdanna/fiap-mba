@@ -11,6 +11,9 @@ SQL scripts execution order:
 * appointment_create.sql
 * procedure_insert.sql
 * professional_insert.sql
+* patient_insert.sql
+* address_insert.sql
+* person_address_insert.sql
 
 RESTful URLs:
 
