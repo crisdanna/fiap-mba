@@ -43,7 +43,7 @@ RESTful URLs:
 
 ```
 {
-      "date": "30/10/2021",
+      "date": "10/30/2021",
 	   "time": "09:30",
       "professional": { "id": 2 },
       "treatment": {
