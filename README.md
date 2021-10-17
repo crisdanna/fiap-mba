@@ -1,5 +1,8 @@
 # fiap-mba
 
+This project communicates with a PostgreSQL database. Install PostgreSQL, using all default settings and create a basic database.
+
+
 SQL scripts execution order:
 
 * address_create.sql
